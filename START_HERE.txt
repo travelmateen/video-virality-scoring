@@ -1,0 +1,28 @@
+==========================================
+  VIRALITY COACH - DEPLOYMENT PACKAGE
+==========================================
+
+This folder contains everything you need to deploy and run the Virality Coach application.
+
+QUICK START:
+1. Install Python dependencies: pip install -r requirements.txt
+2. Install FFmpeg (required for video processing)
+3. Run: streamlit run ui/app_v2.py
+   OR double-click: run_app.bat (Windows)
+
+FILES INCLUDED:
+✓ All application code (app/, ui/)
+✓ Configuration files (config.py)
+✓ Dependencies (requirements.txt)
+✓ Demo video (demo.mp4)
+✓ Startup scripts (run_app.bat, run_app.sh)
+✓ Documentation (README_DEPLOYMENT.md)
+
+IMPORTANT:
+- API Keys can be entered in the UI or set as environment variables
+- Data directories will be auto-created when you run analyses
+- Demo video is included for testing
+
+See README_DEPLOYMENT.md for detailed instructions.
+
+==========================================

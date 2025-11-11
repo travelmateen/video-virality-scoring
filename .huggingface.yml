@@ -1,0 +1,2 @@
+sdk: docker
+python_version: 3.12

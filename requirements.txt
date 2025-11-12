@@ -132,7 +132,7 @@ narwhals==1.47.0
     # via
     #   altair
     #   plotly
-networkx>=3.6,<4
+networkx==3.5
     # via
     #   sievedata
     #   torch

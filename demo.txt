@@ -1,0 +1,61 @@
+name: Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set Up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch --index-url https://download.pytorch.org/whl/cpu
+        pip install -r requirements.txt
+        pip install huggingface_hub
+        
+     
+        
+
+    - name: Configure Git User
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Deploy to Hugging Face Space
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        HF_USERNAME: ${{ secrets.HF_USERNAME }}
+        HF_SPACE_NAME: ${{ secrets.HF_SPACE_NAME }}
+      run: |
+        # Store credentials
+        echo "https://$HF_USERNAME:$HF_TOKEN@huggingface.co" > ~/.git-credentials
+        git config --global credential.helper store
+        
+        # Clone the space repository
+        git clone https://huggingface.co/spaces/$HF_USERNAME/$HF_SPACE_NAME repo
+        
+        # Copy files to the repo directory
+        rsync -av --exclude={'.git','repo'} ./ repo/
+        
+        # Push changes
+        cd repo
+        git add .
+        git commit -m "Automated deployment" || echo "No changes to commit"
+        git push https://huggingface.co/spaces/$HF_USERNAME/$HF_SPACE_NAME main
+
+    - name: Cleanup Credentials
+      if: always()
+      run: |
+        rm -f ~/.git-credentials

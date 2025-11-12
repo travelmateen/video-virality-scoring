@@ -5,6 +5,6 @@ colorFrom: "blue"
 colorTo: "purple"
 sdk: "streamlit"
 sdk_version: "1.38.0"
-app_file: "app.py"
+app_file: "ui/app.py"
 pinned: false
 ---

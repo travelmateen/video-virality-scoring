@@ -21,7 +21,10 @@ jobs:
     - name: Install System Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libgl1 libglib2.0-0 libsm6 libxext6 libxrender1 ffmpeg
+        sudo apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender1 ffmpeg
+        # Try libgl1, fallback to mesa-glx if needed
+        sudo apt-get install -y libgl1 || sudo apt-get install -y libgl1-mesa-glx || true
+
         
     - name: Install Dependencies
       run: |

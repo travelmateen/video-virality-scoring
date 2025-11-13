@@ -32,6 +32,10 @@ ROOT = Path(__file__).resolve().parents[1]  # project root
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+# For debugging path issues
+print("sys.path:", sys.path)
+print("ROOT:", ROOT)
+
 from config import make_path
 from app.pipeline.scene_detect import SceneDetector
 from app.pipeline.frame_extract import FrameExtractor

@@ -1,9 +1,9 @@
 from pathlib import Path
-from app.pipeline.scoring import VideoReport
-from app.pipeline.scene_detect import SceneDetector
-from app.pipeline.frame_extract import FrameExtractor
-from app.pipeline.audio_analysis import AudioAnalyzer
-from app.pipeline.frame_analysis import FrameAnalyzer, HookAnalyzer
+from files.pipeline.scoring import VideoReport
+from files.pipeline.scene_detect import SceneDetector
+from files.pipeline.frame_extract import FrameExtractor
+from files.pipeline.audio_analysis import AudioAnalyzer
+from files.pipeline.frame_analysis import FrameAnalyzer, HookAnalyzer
 
 
 def run_pipeline(video_path: str):

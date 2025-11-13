@@ -25,7 +25,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
     && pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project structure
-COPY app/ ./app/
+COPY files/ ./files/
 COPY ui/ ./ui/
 COPY config.py ./config.py
 COPY __init__.py ./

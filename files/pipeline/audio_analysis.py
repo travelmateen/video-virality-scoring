@@ -9,7 +9,7 @@ from typing import Dict, List
 import google.generativeai as genai
 
 from config import make_path, GEMINI_API_KEY
-from app.utils.logging import get_logger
+from files.utils.logging import get_logger
 
 
 class AudioAnalyzer:

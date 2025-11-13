@@ -1,7 +1,7 @@
 import openai
 import json
 from pathlib import Path
-from app.utils.logging import get_logger
+from files.utils.logging import get_logger
 from config import make_path, OPENAI_API_KEY
 
 

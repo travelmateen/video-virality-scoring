@@ -2,7 +2,7 @@ import json
 import subprocess
 from pathlib import Path
 from config import make_path
-from app.utils.logging import get_logger
+from files.utils.logging import get_logger
 
 
 class FrameExtractor:

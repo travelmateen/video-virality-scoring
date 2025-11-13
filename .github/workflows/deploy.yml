@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 2. Setup Python (3.10 for compatibility with your packages)
+      # 2. Setup Python 
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:

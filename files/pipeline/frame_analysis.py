@@ -5,7 +5,7 @@ import base64
 import openai
 from pathlib import Path
 import google.generativeai as genai
-from app.utils.logging import get_logger
+from files.utils.logging import get_logger
 from config import make_path, OPENAI_API_KEY, GEMINI_API_KEY, DATA_DIR
 
 

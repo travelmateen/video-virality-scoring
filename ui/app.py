@@ -1,5 +1,6 @@
 import re
 import sys
+import os
 import json
 import time
 import signal
@@ -35,6 +36,8 @@ if ROOT_STR not in sys.path:
     sys.path.insert(0, ROOT_STR)
 
 # Verify app package exists
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 app_dir = ROOT / "app"
 if not app_dir.exists():
     raise ImportError(f"Cannot find 'app' package at {app_dir}. ROOT={ROOT}")

@@ -1,6 +1,5 @@
 import re
 import sys
-import os
 import json
 import time
 import signal
@@ -29,25 +28,13 @@ if threading.current_thread() is not threading.main_thread():
 # -----------------------------
 # Project paths & imports
 # -----------------------------
-CURRENT_DIR = Path(__file__).resolve().parent   # /ui
-ROOT_DIR = CURRENT_DIR.parent                   # project root
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
-# Ensure root path is in sys.path
-if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
-
-# Verify 'app' package exists
-APP_DIR = ROOT_DIR / "app"
-if not APP_DIR.exists():
-    raise ImportError(f"Cannot find 'app' package at {APP_DIR}. ROOT={ROOT_DIR}")
-
-# -----------------------------
-# Local project imports
-# -----------------------------
 from config import make_path
 from app.pipeline.scene_detect import SceneDetector
 from app.pipeline.frame_extract import FrameExtractor
-
 
 # -----------------------------
 # Storage layout

@@ -11,9 +11,9 @@ cd ${WORKDIR} || exit 1
 echo "Starting app (type=${APP_TYPE}, port=${PORT})"
 
 if [ "${APP_TYPE}" = "streamlit" ]; then
-  # Streamlit: expects a file like app.py — run streamlit with network binding
+  # Streamlit: expects a file like streamlit_app.py — run streamlit with network binding
   # --server.enableCORS false is often needed when embedding or dev
-  exec streamlit run app.py --server.port ${PORT} --server.address 0.0.0.0 --server.enableCORS false
+  exec streamlit run streamlit_app.py --server.port ${PORT} --server.address 0.0.0.0 --server.enableCORS false
 
 elif [ "${APP_TYPE}" = "fastapi" ]; then
   # FastAPI: expects ASGI app in variable APP_MODULE (e.g. app:app)

@@ -18,14 +18,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for caching
-COPY ui/requirements.txt ./ui/requirements.txt
+COPY requirements.txt ./requirements.txt
 
 # Install pip dependencies (use --no-cache-dir in production)
 RUN python -m pip install --upgrade pip setuptools wheel \
-    && pip install --no-cache-dir -r ui/requirements.txt
+    && pip install --no-cache-dir -r requirements.txt
 
-# Copy the UI code
+# Copy the entire project structure
+COPY app/ ./app/
 COPY ui/ ./ui/
+COPY config.py ./config.py
+COPY __init__.py ./
 
 # Add entrypoint script
 COPY entrypoint.sh /entrypoint.sh
@@ -38,7 +41,7 @@ EXPOSE 8501 8000
 ENV APP_MODULE="app:app" \
     APP_TYPE="streamlit" \
     PORT=8501 \
-    PYTHONPATH="/app/ui"
+    PYTHONPATH="/app"
 
 # Entrypoint handles which server to start
 ENTRYPOINT ["/entrypoint.sh"]

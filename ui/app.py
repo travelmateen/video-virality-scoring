@@ -28,9 +28,9 @@ if threading.current_thread() is not threading.main_thread():
 # -----------------------------
 # Project paths & imports
 # -----------------------------
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1]  # project root
 if str(ROOT) not in sys.path:
-    sys.path.append(str(ROOT))
+    sys.path.insert(0, str(ROOT))
 
 from config import make_path
 from app.pipeline.scene_detect import SceneDetector

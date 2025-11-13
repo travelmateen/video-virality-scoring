@@ -29,22 +29,25 @@ if threading.current_thread() is not threading.main_thread():
 # -----------------------------
 # Project paths & imports
 # -----------------------------
-ROOT = Path(__file__).resolve().parents[1]
-ROOT_STR = str(ROOT.resolve())  # Ensure absolute path
-# Insert at beginning for higher priority
-if ROOT_STR not in sys.path:
-    sys.path.insert(0, ROOT_STR)
+CURRENT_DIR = Path(__file__).resolve().parent       # /ui
+ROOT_DIR = CURRENT_DIR.parent                       # project root
 
-# Verify app package exists
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Ensure root path is in sys.path
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
-app_dir = ROOT / "app"
-if not app_dir.exists():
-    raise ImportError(f"Cannot find 'app' package at {app_dir}. ROOT={ROOT}")
+# Verify 'app' package exists
+APP_DIR = ROOT_DIR / "app"
+if not APP_DIR.exists():
+    raise ImportError(f"Cannot find 'app' package at {APP_DIR}. ROOT={ROOT_DIR}")
 
+# -----------------------------
+# Local project imports
+# -----------------------------
 from config import make_path
 from app.pipeline.scene_detect import SceneDetector
 from app.pipeline.frame_extract import FrameExtractor
+
 
 # -----------------------------
 # Storage layout

@@ -45,8 +45,8 @@ if not APP_DIR.exists():
 # Local project imports
 # -----------------------------
 from config import make_path
-from app.pipeline.scene_detect import SceneDetector
-from app.pipeline.frame_extract import FrameExtractor
+from ..app.pipeline.scene_detect import SceneDetector
+from ..app.pipeline.frame_extract import FrameExtractor
 
 
 # -----------------------------
@@ -363,7 +363,7 @@ def _run_current_stage():
         elif stage == "frame analysis":
             push_status("Analyzing frames…")
             if st.session_state.openai_key and st.session_state.openai_key.strip():
-                from app.pipeline.frame_analysis import FrameAnalyzer
+                from ..app.pipeline.frame_analysis import FrameAnalyzer
                 try:
                     FrameAnalyzer(str(vp), openai_api_key=st.session_state.openai_key.strip()).analyze()
                 except Exception as api_error:
@@ -389,7 +389,7 @@ def _run_current_stage():
         elif stage == "audio analysis":
             push_status("Analyzing audio…")
             if st.session_state.gemini_key and st.session_state.gemini_key.strip():
-                from app.pipeline.audio_analysis import AudioAnalyzer
+                from ..app.pipeline.audio_analysis import AudioAnalyzer
                 try:
                     AudioAnalyzer(str(vp), gemini_api_key=st.session_state.gemini_key.strip()).analyze()
                 except (ValueError, Exception) as api_error:
@@ -415,7 +415,7 @@ def _run_current_stage():
         elif stage == "hook analysis":
             push_status("Evaluating hook…")
             if st.session_state.gemini_key and st.session_state.gemini_key.strip():
-                from app.pipeline.frame_analysis import HookAnalyzer
+                from ..app.pipeline.frame_analysis import HookAnalyzer
                 try:
                     HookAnalyzer(str(vp), gemini_api_key=st.session_state.gemini_key.strip()).analyze()
                 except (ValueError, Exception) as api_error:
@@ -441,7 +441,7 @@ def _run_current_stage():
         elif stage == "report":
             push_status("Generating final report…")
             if st.session_state.openai_key and st.session_state.openai_key.strip():
-                from app.pipeline.scoring import VideoReport
+                from ..app.pipeline.scoring import VideoReport
                 try:
                     VideoReport(str(vp), openai_api_key=st.session_state.openai_key.strip()).generate()
                 except Exception as api_error:

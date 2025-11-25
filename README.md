@@ -11,100 +11,129 @@ pinned: false
 
 # Video Virality Scoring
 
-This project predicts how viral a video can become by analyzing its visuals, hooks, pacing, and overall content quality. It combines computer vision, scene detection, and LLM-based scoring to provide creators with fast and actionable insights.
+This project evaluates how viral a video is likely to become by analyzing scenes, hooks, pacing, content quality, and trend alignment. It uses Computer Vision for scene detection and Large Language Models (LLMs) for scoring and content recommendations.
+
+## Overview
+
+The system processes a user-uploaded video through four core stages:
+
+1. Scene Detection using Computer Vision
+2. Hook and Frame-Level Analysis
+3. LLM-Based Virality Scoring
+4. Trend Alignment and Performance Prediction
+
+The output includes a final Virality Score and actionable suggestions.
 
 ## Features
 
-### Scene Detection (Computer Vision)
+### Scene Detection
 
-* Automatically detects scene boundaries.
-* Identifies visual changes, pacing, and transitions.
-* Helps evaluate whether the video maintains viewer attention.
+* Extracts keyframes and identifies scene boundaries.
+* Measures pacing, cuts, transitions, and visual variation.
+* Determines whether the video maintains viewer attention.
 
-### LLM-Powered Scoring
+### LLM-Based Scoring
 
-* Rates the video across multiple virality factors such as:
-
-  * Hook strength
-  * Retention potential
-  * Emotional impact
-  * Narrative clarity
-* Produces an overall Virality Score (0–100).
+* Rates narrative clarity, emotional impact, pacing, and retention.
+* Generates a 0–100 Virality Score.
+* Provides strengths, weaknesses, and recommendations.
 
 ### Hook Analysis
 
-* Analyzes the opening seconds of the video.
-* Detects whether the hook can capture attention quickly.
-* Suggests improvements for strengthening the introduction.
+* Focuses on the opening moments of the video.
+* Evaluates whether the introduction can stop scrolling.
+* Highlights issues in timing, structure, or visual appeal.
 
 ### Trend Prediction
 
-* Estimates how well the video's content aligns with current online trends.
-* Analyzes topics, pacing, and style compared to trending patterns.
-* Provides a category-specific virality likelihood.
+* Evaluates video styles against current social-media trends.
+* Checks pacing, topic relevance, and engagement patterns.
+* Predicts potential performance on TikTok, Reels, and YouTube Shorts.
 
-### Actionable Suggestions
+### Recommendations
 
-* Offers practical recommendations:
-
-  * What to cut
-  * What to highlight
-  * What to restructure
-* Helps improve retention, shareability, and engagement.
+* Identifies scenes to cut, extend, or enhance.
+* Suggests improvements to strengthen retention and shareability.
+* Provides guidance for boosting engagement and performance.
 
 ## Tech Stack
 
-* Streamlit for the user interface
-* Python backend
-* OpenCV for frame extraction and video processing
-* Scene detection methods for boundary analysis
-* Large Language Models for contextual scoring and suggestions
-* Deployed on Hugging Face Spaces
+* Python
+* Streamlit for UI
+* OpenCV for frame and video processing
+* Scene detection algorithms
+* LLMs for scoring and content analysis
+* Docker deployment on Hugging Face Spaces
 
 ## Project Structure
 
 ```
-ui/
- └── streamlit_app.py       # Main UI script
-core/
- ├── scene_detection.py     # Keyframe and boundary detection
- ├── scoring.py             # LLM evaluation pipeline
- └── hooks.py               # Hook extraction and scoring
-models/
- └── ...                    # Model wrappers and utilities
-assets/
- └── ...                    # Thumbnails, sample content
+video-virality-scoring/
+│
+├── ui/
+│   ├── __init__.py
+│   └── streamlit_app.py
+│
+├── files/
+│   └── pipeline/
+│       ├── __init__.py
+│       ├── audio_analysis.py
+│       ├── frame_analysis.py
+│       ├── frame_extract.py
+│       ├── scene_detect.py
+│       └── scoring.py
+│
+├── .github/workflows/
+├── __pycache__/
+│
+├── .env
+├── .huggingface.yml
+├── .python-version
+├── Dockerfile
+├── README.md
+├── START HERE.txt
+├── __init__.py
+├── config.py
+├── demo.mp4
+├── demo.txt
+├── entrypoint.sh
+├── main.py
+├── packages.txt
+└── pyproject.toml
 ```
 
 ## How It Works
 
-1. Upload a video.
-2. The system extracts frames and detects scene boundaries.
-3. The hook and key pacing segments are isolated.
-4. Extracted information is passed to the LLM for scoring.
-5. The system outputs:
+1. User uploads a video.
+2. Frames are extracted, and scenes are detected.
+3. Audio, hooks, and key segments are analyzed.
+4. Extracted descriptors and metadata are passed to the LLM.
+5. Final output includes:
 
-   * Virality score
-   * Hook score
-   * Trend alignment
-   * Detailed suggestions
+   * Virality Score
+   * Hook Score
+   * Trend Alignment
+   * Improvement Suggestions
 
 ## Supported Formats
 
 * MP4
 * MOV
 * WEBM
-* Other common social-media formats
+* Other social-media-friendly formats
 
 ## Roadmap
 
-* Multi-platform scoring (TikTok, YouTube Shorts and Reels)
-* Thumbnail scoring and generation
-* Automatic highlight suggestions with timestamps
-* Audio-based hook evaluation
+* Platform-specific scoring
+* Thumbnail quality evaluation
+* Timestamp-based auto-cut suggestions
+* Audio-only hook quality analysis
 
 ## Contributing
 
-Contributions are welcome.
-Open an issue or submit a pull request with improvements or suggestions.
+Contributions are welcome. Open an issue or submit a pull request to suggest improvements or add new features.
 
+---
+
+For more tools and projects, visit:
+[https://techtics.ai](https://techtics.ai)
